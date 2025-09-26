@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Процесс PFP</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .step {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid #667eea;
+        }
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        .step.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 15px;
+        }
+        .step.active .step-number {
+            background: white;
+            color: #667eea;
+        }
+        .details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+        .step.active .details {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline">
+        <h2>🚀 Как разместить PFP-вакансию</h2>
+        
+        <div class="step" onclick="toggleStep(this)">
+            <span class="step-number">1</span>
+            <strong>Создание вакансии</strong>
+            <div class="details">
+                • Создайте новую вакансию<br>
+                • Или восстановите из архива<br>
+                • Или сделайте дубль активной
+            </div>
+        </div>
+        
+        <div class="step" onclick="toggleStep(this)">
+            <span class="step-number">2</span>
+            <strong>Настройка параметров</strong>
+            <div class="details">
+                • Выберите тип занятости "Вахта"<br>
+                • Отметьте все нужные города<br>
+                • Выберите "За контакты в откликах"
+            </div>
+        </div>
+        
+        <div class="step" onclick="toggleStep(this)">
+            <span class="step-number">3</span>
+            <strong>Пополнение бюджета</strong>
+            <div class="details">
+                • Минимальная сумма - 1000₽<br>
+                • Первые 10 откликов бесплатно<br>
+                • 300₽ за каждый следующий контакт
+            </div>
+        </div>
+        
+        <div class="step" onclick="toggleStep(this)">
+            <span class="step-number">4</span>
+            <strong>Работа с откликами</strong>
+            <div class="details">
+                • Отклики доступны даже при 0 балансе<br>
+                • Чат открывается после оплаты<br>
+                • Можно работать даже с архивными вакансиями
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleStep(element) {
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>

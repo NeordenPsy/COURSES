@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика PFP</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .stats-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+        .stat-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animated {
+            animation: countUp 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="stats-container">
+        <div class="stat-card animated">
+            <div class="stat-icon">💰</div>
+            <div class="stat-number" data-target="300">0</div>
+            <div class="stat-label">₽ за контакт</div>
+        </div>
+        
+        <div class="stat-card animated">
+            <div class="stat-icon">🎁</div>
+            <div class="stat-number" data-target="10">0</div>
+            <div class="stat-label">бесплатных откликов</div>
+        </div>
+        
+        <div class="stat-card animated">
+            <div class="stat-icon">📅</div>
+            <div class="stat-number" data-target="30">0</div>
+            <div class="stat-label">дней размещения</div>
+        </div>
+        
+        <div class="stat-card animated">
+            <div class="stat-icon">🚀</div>
+            <div class="stat-number" data-target="3">0</div>
+            <div class="stat-label">дня автопродвижение</div>
+        </div>
+    </div>
+
+    <script>
+        const counters = document.querySelectorAll('.stat-number');
+        
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const increment = target / 50;
+            
+            function updateCount() {
+                const count = +counter.innerText;
+                
+                if(count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 30);
+                } else {
+                    counter.innerText = target;
+                }
+            }
+            
+            updateCount();
+        });
+    </script>
+</body>
+</html>

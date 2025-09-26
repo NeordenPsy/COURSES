@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подсказки PFP</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .term {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            cursor: help;
+            position: relative;
+        }
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            margin-bottom: 10px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #333;
+        }
+        .term:hover .tooltip {
+            opacity: 1;
+        }
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📚 Глоссарий PFP-терминов</h2>
+        
+        <div class="info-card">
+            <p>Наведите на термины для получения подсказки:</p>
+            
+            <span class="term">
+                PFP
+                <span class="tooltip">Pay for Performance - оплата за результат</span>
+            </span>
+            
+            <span class="term">
+                Вахта
+                <span class="tooltip">Работа с проживанием в другом городе</span>
+            </span>
+            
+            <span class="term">
+                Clickme
+                <span class="tooltip">Дополнительное продвижение вакансии</span>
+            </span>
+            
+            <span class="term">
+                Топ поиска
+                <span class="tooltip">Размещение вакансии в топе результатов</span>
+            </span>
+            
+            <span class="term">
+                Контакт
+                <span class="tooltip">Открытие данных кандидата для связи</span>
+            </span>
+        </div>
+    </div>
+</body>
+</html>

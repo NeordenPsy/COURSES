@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Чеклист PFP</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f3ff 0%, #ffd6e7 100%);
+        }
+        .checklist {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        .item:hover {
+            background: #e9ecef;
+        }
+        input[type="checkbox"] {
+            width: 25px;
+            height: 25px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .item.checked {
+            background: #d4edda;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .progress {
+            background: #e9ecef;
+            height: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="checklist">
+        <h2>📋 Чеклист запуска PFP-вакансии</h2>
+        
+        <div class="progress">
+            <div class="progress-bar" id="progress">0%</div>
+        </div>
+        
+        <div class="item">
+            <input type="checkbox" onchange="updateProgress()">
+            <label>Выбран тип занятости "Вахта"</label>
+        </div>
+        
+        <div class="item">
+            <input type="checkbox" onchange="updateProgress()">
+            <label>Отмечены все нужные города</label>
+        </div>
+        
+        <div class="item">
+            <input type="checkbox" onchange="updateProgress()">
+            <label>Выбрана оплата "За контакты"</label>
+        </div>
+        
+        <div class="item">
+            <input type="checkbox" onchange="updateProgress()">
+            <label>Пополнен бюджет (мин. 1000₽)</label>
+        </div>
+        
+        <div class="item">
+            <input type="checkbox" onchange="updateProgress()">
+            <label>Настроено автопродвижение</label>
+        </div>
+    </div>
+
+    <script>
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+            const progress = (checked.length / checkboxes.length) * 100;
+            
+            document.getElementById('progress').style.width = progress + '%';
+            document.getElementById('progress').textContent = Math.round(progress) + '%';
+            
+            checkboxes.forEach(checkbox => {
+                const item = checkbox.parentElement;
+                if (checkbox.checked) {
+                    item.classList.add('checked');
+                } else {
+                    item.classList.remove('checked');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

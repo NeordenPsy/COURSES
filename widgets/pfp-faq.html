@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ по PFP</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        .faq-question.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+        }
+        .faq-answer.show {
+            max-height: 500px;
+            padding: 20px;
+        }
+        .arrow {
+            transition: transform 0.3s;
+            font-size: 20px;
+        }
+        .faq-question.active .arrow {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="faq-container">
+        <h2>❓ Частые вопросы о PFP-вакансиях</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Что делать если баланс на нуле?</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Отклики продолжают поступать даже при нулевом балансе. 
+                Вы сможете их просматривать, но для открытия контактов 
+                нужно будет пополнить бюджет минимум на 1000₽.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Можно ли вернуть неиспользованные средства?</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Да, при остановке услуги все неиспользованные средства 
+                автоматически возвращаются на основной баланс hh.ru.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Работает ли PFP с архивными вакансиями?</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                Да, вы можете продолжать работать с откликами даже если 
+                вакансия находится в архиве. Это удобно для обработки 
+                накопившихся откликов.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

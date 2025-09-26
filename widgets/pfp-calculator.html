@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор PFP</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .result {
+            font-size: 36px;
+            color: #667eea;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .info {
+            background: #f5f5ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>🧮 Калькулятор стоимости PFP-вакансии</h2>
+        <label>Планируемое количество откликов:</label>
+        <input type="number" id="responses" value="20" min="0">
+        
+        <div class="result">
+            <div>Итого: <span id="total">3 000</span> ₽</div>
+        </div>
+        
+        <div class="info">
+            <p>📌 Первые 10 откликов - <strong>бесплатно</strong></p>
+            <p>💵 Каждый следующий - <strong>300 ₽</strong></p>
+            <p id="breakdown"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('responses').addEventListener('input', function() {
+            const responses = parseInt(this.value) || 0;
+            const freeResponses = 10;
+            const pricePerResponse = 300;
+            
+            let total = 0;
+            let paidResponses = 0;
+            
+            if (responses > freeResponses) {
+                paidResponses = responses - freeResponses;
+                total = paidResponses * pricePerResponse;
+            }
+            
+            document.getElementById('total').textContent = total.toLocaleString('ru-RU');
+            document.getElementById('breakdown').innerHTML = 
+                `Бесплатных: ${Math.min(responses, freeResponses)} | 
+                 Платных: ${paidResponses}`;
+        });
+    </script>
+</body>
+</html>
