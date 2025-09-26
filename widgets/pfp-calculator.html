@@ -4,45 +4,110 @@
     <meta charset="UTF-8">
     <title>Калькулятор PFP</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            padding: 15px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            margin: 0;
+            color: #ffffff;
+            overflow: hidden;
         }
+        
         .calculator {
-            background: white;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 400px;
+            padding: 25px;
+            max-width: 450px;
             margin: 0 auto;
+            border: 1px solid rgba(220, 38, 127, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            backdrop-filter: blur(15px);
         }
-        .result {
-            font-size: 36px;
-            color: #667eea;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
+        
+        .calculator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #DC267F, #FF6B35, #DC267F);
+            border-radius: 20px 20px 0 0;
         }
+        
+        h2 {
+            color: #DC267F;
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(220, 38, 127, 0.5);
+        }
+        
+        label {
+            color: #e0e0e0;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
         input {
-            width: 100%;
-            padding: 15px;
-            font-size: 18px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin: 10px 0;
+            width: calc(100% - 30px);
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 2px solid rgba(220, 38, 127, 0.3);
+            border-radius: 12px;
+            margin: 8px 0 15px 0;
+            background: rgba(26, 26, 46, 0.8);
+            color: #ffffff;
+            transition: all 0.3s ease;
         }
+        
+        input:focus {
+            outline: none;
+            border-color: #DC267F;
+            box-shadow: 0 0 20px rgba(220, 38, 127, 0.3);
+        }
+        
+        .result {
+            font-size: 28px;
+            color: #DC267F;
+            font-weight: 700;
+            text-align: center;
+            margin: 15px 0;
+            text-shadow: 0 0 15px rgba(220, 38, 127, 0.5);
+        }
+        
         .info {
-            background: #f5f5ff;
+            background: linear-gradient(135deg, rgba(220, 38, 127, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
             padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 1px solid rgba(220, 38, 127, 0.2);
+            font-size: 14px;
+        }
+        
+        .info p {
+            margin: 8px 0;
+            color: #e0e0e0;
+        }
+        
+        .info strong {
+            color: #DC267F;
+        }
+        
+        #breakdown {
+            color: #FF6B35;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="calculator">
-        <h2>🧮 Калькулятор стоимости PFP-вакансии</h2>
+        <h2>🧮 Калькулятор стоимости PFP</h2>
         <label>Планируемое количество откликов:</label>
         <input type="number" id="responses" value="20" min="0">
         
@@ -73,8 +138,7 @@
             
             document.getElementById('total').textContent = total.toLocaleString('ru-RU');
             document.getElementById('breakdown').innerHTML = 
-                `Бесплатных: ${Math.min(responses, freeResponses)} | 
-                 Платных: ${paidResponses}`;
+                `Бесплатных: ${Math.min(responses, freeResponses)} | Платных: ${paidResponses}`;
         });
     </script>
 </body>

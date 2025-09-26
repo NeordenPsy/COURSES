@@ -2,44 +2,96 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Подсказки PFP</title>
+    <title>Глоссарий PFP</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             padding: 20px;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            margin: 0;
+            overflow-x: hidden;
         }
+        
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-        }
-        .term {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin: 5px;
-            cursor: help;
             position: relative;
         }
+        
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(220, 38, 127, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(220, 38, 127, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        h2 {
+            color: #DC267F;
+            font-weight: 700;
+            font-size: 28px;
+            text-shadow: 0 0 20px rgba(220, 38, 127, 0.5);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .term {
+            display: inline-block;
+            background: linear-gradient(135deg, #DC267F 0%, #FF6B35 100%);
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin: 8px;
+            cursor: help;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(220, 38, 127, 0.3);
+            box-shadow: 0 4px 15px rgba(220, 38, 127, 0.2);
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .term:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 127, 0.4);
+            background: linear-gradient(135deg, #FF6B35 0%, #DC267F 100%);
+        }
+        
         .tooltip {
             position: absolute;
-            bottom: 100%;
+            bottom: calc(100% + 15px);
             left: 50%;
             transform: translateX(-50%);
-            background: #333;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 12px;
             white-space: nowrap;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s;
-            margin-bottom: 10px;
+            transition: all 0.3s ease;
             font-size: 14px;
+            font-weight: 500;
             z-index: 1000;
+            border: 1px solid rgba(220, 38, 127, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            
+            /* Предотвращаем обрезку */
+            min-width: max-content;
+            max-width: 300px;
+            white-space: normal;
         }
+        
         .tooltip::after {
             content: '';
             position: absolute;
@@ -47,22 +99,88 @@
             left: 50%;
             transform: translateX(-50%);
             border: 8px solid transparent;
-            border-top-color: #333;
+            border-top-color: #1a1a2e;
         }
+        
+        /* Умное позиционирование для крайних элементов */
+        .term:first-child .tooltip {
+            left: 0;
+            transform: translateX(0);
+        }
+        
+        .term:first-child .tooltip::after {
+            left: 20px;
+            transform: translateX(0);
+        }
+        
+        .term:last-child .tooltip {
+            right: 0;
+            left: auto;
+            transform: translateX(0);
+        }
+        
+        .term:last-child .tooltip::after {
+            right: 20px;
+            left: auto;
+            transform: translateX(0);
+        }
+        
         .term:hover .tooltip {
             opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
         }
+        
+        .term:first-child:hover .tooltip {
+            transform: translateX(0) translateY(-5px);
+        }
+        
+        .term:last-child:hover .tooltip {
+            transform: translateX(0) translateY(-5px);
+        }
+        
         .info-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 1px solid rgba(220, 38, 127, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #DC267F, #FF6B35, #DC267F);
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .info-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(220, 38, 127, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(220, 38, 127, 0.8); }
+        }
+        
+        h2 {
+            animation: glow 3s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="cyber-grid"></div>
         <h2>📚 Глоссарий PFP-терминов</h2>
         
         <div class="info-card">
@@ -70,27 +188,27 @@
             
             <span class="term">
                 PFP
-                <span class="tooltip">Pay for Performance - оплата за результат</span>
+                <span class="tooltip">Pay for Performance - оплата за результат, новый тип размещения вакансий</span>
             </span>
             
             <span class="term">
                 Вахта
-                <span class="tooltip">Работа с проживанием в другом городе</span>
+                <span class="tooltip">Работа с проживанием в другом городе, временное трудоустройство</span>
             </span>
             
             <span class="term">
                 Clickme
-                <span class="tooltip">Дополнительное продвижение вакансии</span>
+                <span class="tooltip">Дополнительное продвижение вакансии для увеличения просмотров</span>
             </span>
             
             <span class="term">
                 Топ поиска
-                <span class="tooltip">Размещение вакансии в топе результатов</span>
+                <span class="tooltip">Размещение вакансии в топе результатов поиска кандидатов</span>
             </span>
             
             <span class="term">
                 Контакт
-                <span class="tooltip">Открытие данных кандидата для связи</span>
+                <span class="tooltip">Открытие данных кандидата для связи за 300₽</span>
             </span>
         </div>
     </div>

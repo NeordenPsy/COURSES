@@ -4,57 +4,101 @@
     <meta charset="UTF-8">
     <title>Процесс PFP</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            padding: 20px;
-            background: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+            padding: 15px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            margin: 0;
+            color: #ffffff;
+            overflow-x: hidden;
         }
+        
         .timeline {
             position: relative;
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
         }
+        
+        h2 {
+            color: #DC267F;
+            font-weight: 700;
+            font-size: 22px;
+            text-shadow: 0 0 15px rgba(220, 38, 127, 0.5);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
         .step {
-            background: white;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
             border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 18px;
+            margin: 15px 0;
             cursor: pointer;
-            transition: all 0.3s;
-            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            border-left: 4px solid #DC267F;
+            border: 1px solid rgba(220, 38, 127, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
         }
+        
         .step:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transform: translateX(8px);
+            box-shadow: 0 8px 30px rgba(220, 38, 127, 0.3);
+            border-color: #DC267F;
         }
+        
         .step.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #DC267F 0%, #FF6B35 100%);
+            color: #ffffff;
+            transform: translateX(8px);
         }
+        
         .step-number {
             display: inline-block;
-            width: 30px;
-            height: 30px;
-            background: #667eea;
-            color: white;
+            width: 28px;
+            height: 28px;
+            background: #DC267F;
+            color: #ffffff;
             border-radius: 50%;
             text-align: center;
-            line-height: 30px;
-            margin-right: 15px;
+            line-height: 28px;
+            margin-right: 12px;
+            font-weight: 700;
+            font-size: 14px;
         }
+        
         .step.active .step-number {
-            background: white;
-            color: #667eea;
+            background: #ffffff;
+            color: #DC267F;
         }
+        
+        .step-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
         .details {
             display: none;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.3);
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            line-height: 1.5;
         }
+        
         .step.active .details {
             display: block;
+        }
+        
+        .details ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        
+        .details li {
+            margin: 4px 0;
         }
     </style>
 </head>
@@ -64,41 +108,49 @@
         
         <div class="step" onclick="toggleStep(this)">
             <span class="step-number">1</span>
-            <strong>Создание вакансии</strong>
+            <span class="step-title">Создание вакансии</span>
             <div class="details">
-                • Создайте новую вакансию<br>
-                • Или восстановите из архива<br>
-                • Или сделайте дубль активной
+                <ul>
+                    <li>Создайте новую вакансию</li>
+                    <li>Или восстановите из архива</li>
+                    <li>Или сделайте дубль активной</li>
+                </ul>
             </div>
         </div>
         
         <div class="step" onclick="toggleStep(this)">
             <span class="step-number">2</span>
-            <strong>Настройка параметров</strong>
+            <span class="step-title">Настройка параметров</span>
             <div class="details">
-                • Выберите тип занятости "Вахта"<br>
-                • Отметьте все нужные города<br>
-                • Выберите "За контакты в откликах"
+                <ul>
+                    <li>Выберите тип занятости "Вахта"</li>
+                    <li>Отметьте все нужные города</li>
+                    <li>Выберите "За контакты в откликах"</li>
+                </ul>
             </div>
         </div>
         
         <div class="step" onclick="toggleStep(this)">
             <span class="step-number">3</span>
-            <strong>Пополнение бюджета</strong>
+            <span class="step-title">Пополнение бюджета</span>
             <div class="details">
-                • Минимальная сумма - 1000₽<br>
-                • Первые 10 откликов бесплатно<br>
-                • 300₽ за каждый следующий контакт
+                <ul>
+                    <li>Минимальная сумма - 1000₽</li>
+                    <li>Первые 10 откликов бесплатно</li>
+                    <li>300₽ за каждый следующий контакт</li>
+                </ul>
             </div>
         </div>
         
         <div class="step" onclick="toggleStep(this)">
             <span class="step-number">4</span>
-            <strong>Работа с откликами</strong>
+            <span class="step-title">Работа с откликами</span>
             <div class="details">
-                • Отклики доступны даже при 0 балансе<br>
-                • Чат открывается после оплаты<br>
-                • Можно работать даже с архивными вакансиями
+                <ul>
+                    <li>Отклики доступны даже при 0 балансе</li>
+                    <li>Чат открывается после оплаты</li>
+                    <li>Можно работать даже с архивными вакансиями</li>
+                </ul>
             </div>
         </div>
     </div>
