@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: transparent;
+        }
+        .widget-container {
+            padding: 20px;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #D6001C 0%, #FF4444 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(214, 0, 28, 0.2);
+        }
+        .stats-title {
+            margin: 0 0 25px 0;
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container">
+        <div class="stats-card">
+            <h2 class="stats-title">PFP-вакансии в цифрах</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">бесплатных<br>откликов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">300₽</div>
+                    <div class="stat-label">за контакт</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">дней<br>размещения</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
